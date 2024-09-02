@@ -2,14 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const rootDirectory = path.join(process.cwd(), 'content', 'posts');
-
-export type Post = {
-  metadata: PostMetadata;
+export type Content = {
+  metadata: ContentMetadata;
   content: string;
 };
 
-export type PostMetadata = {
+export type ContentMetadata = {
   title?: string;
   summary?: string;
   image?: string;
@@ -18,7 +16,14 @@ export type PostMetadata = {
   slug: string;
 };
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+type AvailableDirectories = 'projects' | 'posts';
+
+export async function getContentBySlug(
+  dir: AvailableDirectories,
+  slug: string
+): Promise<Content | null> {
+  const rootDirectory = path.join(process.cwd(), 'content', dir);
+
   try {
     const filePath = path.join(rootDirectory, `${slug}.mdx`);
     const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
@@ -29,11 +34,16 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-export async function getPosts(limit?: number): Promise<PostMetadata[]> {
+export async function getAllContents(
+  dir: AvailableDirectories,
+  limit?: number
+): Promise<ContentMetadata[]> {
+  const rootDirectory = path.join(process.cwd(), 'content', dir);
+
   const files = fs.readdirSync(rootDirectory);
 
-  const posts = files
-    .map(file => getPostMetadata(file))
+  const contents = files
+    .map(file => getProjectMetadata(dir, file))
     .sort((a, b) => {
       if (new Date(a.publishedAt ?? '') < new Date(b.publishedAt ?? '')) {
         return 1;
@@ -43,13 +53,18 @@ export async function getPosts(limit?: number): Promise<PostMetadata[]> {
     });
 
   if (limit) {
-    return posts.slice(0, limit);
+    return contents.slice(0, limit);
   }
 
-  return posts;
+  return contents;
 }
 
-export function getPostMetadata(filepath: string): PostMetadata {
+export function getProjectMetadata(
+  dir: AvailableDirectories,
+  filepath: string
+): ContentMetadata {
+  const rootDirectory = path.join(process.cwd(), 'content', dir);
+
   const slug = filepath.replace(/\.mdx$/, '');
   const filePath = path.join(rootDirectory, filepath);
   const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });

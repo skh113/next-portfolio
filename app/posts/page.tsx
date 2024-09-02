@@ -1,8 +1,8 @@
-import { getPosts } from '@/lib/posts';
 import PostsWithSearch from '@/components/posts-with-search';
+import { getAllContents } from '@/lib/content';
 
 export default async function PostsPage() {
-  const posts = await getPosts();
+  const posts = await getAllContents('posts');
 
   return (
     <section className='pb-24 pt-40'>

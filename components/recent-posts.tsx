@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { getPosts } from '@/lib/posts';
 import Posts from '@/components/posts';
+import { getAllContents } from '@/lib/content';
 
 export default async function RecentPosts() {
-  const posts = await getPosts(4);
+  const posts = await getAllContents('posts', 4);
 
   return (
     <section className='pb-24'>
