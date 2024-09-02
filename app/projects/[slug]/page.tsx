@@ -9,9 +9,7 @@ import { getAllContents, getContentBySlug } from '@/lib/content';
 
 export async function generateStaticParams() {
   const projects = await getAllContents('projects');
-  const slugs = projects.map(project => ({ slug: project.slug }));
-
-  return slugs;
+  return projects.map(project => ({ slug: project.slug }));
 }
 
 export default async function Project({

@@ -8,9 +8,7 @@ import { getAllContents, getContentBySlug } from '@/lib/content';
 
 export async function generateStaticParams() {
   const posts = await getAllContents('posts');
-  const slugs = posts.map(post => ({ slug: post.slug }));
-
-  return slugs;
+  return posts.map(post => ({ slug: post.slug }));
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
