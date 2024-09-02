@@ -1,10 +1,17 @@
-import { getPostBySlug } from '@/lib/posts';
+import { getPostBySlug, getPosts } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import { formatDate } from '@/lib/utils';
 import MDXContent from '@/components/mdx-content';
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  const slugs = posts.map(post => ({ slug: post.slug }));
+
+  return slugs;
+}
 
 export default async function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -13,7 +20,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   if (!post) notFound();
 
   const { content, metadata } = post;
-  const { title, image, author, publishedAt, summary } = metadata;
+  const { title, image, author, publishedAt } = metadata;
 
   return (
     <section className='pb-24 pt-32'>
