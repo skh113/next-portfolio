@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { PropsWithChildren } from 'react'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider, useTheme } from 'next-themes';
+import { Toaster } from '@/components/ui/sonner';
 
-export default function Providers({ children }: PropsWithChildren) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       enableSystem
@@ -12,6 +12,18 @@ export default function Providers({ children }: PropsWithChildren) {
       disableTransitionOnChange
     >
       {children}
+      <ToasterProvider />
     </ThemeProvider>
-  )
+  );
+}
+
+function ToasterProvider() {
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <Toaster
+      position='top-right'
+      theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+    />
+  );
 }

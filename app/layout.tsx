@@ -1,27 +1,27 @@
-import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
-import { cn } from '@/lib/utils'
-import './globals.css'
-import Providers from '@/components/providers'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
+import type { Metadata } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import './globals.css';
+import Providers from '@/components/providers';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif'
-})
+});
 
 export const metadata: Metadata = {
   title: "Keyvan's portfolio",
   description:
     'A simple portfolio where I talk about my newest techniques about programming'
-}
+};
 
 export default function RootLayout({
   children
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
@@ -39,5 +39,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  )
+  );
 }
