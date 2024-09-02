@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import authorImage from '@/public/images/authors/keyvan-bw.png'
+import Image from 'next/image';
+import authorImage from '@/public/images/authors/keyvan-bw.png';
 
 export default function Intro() {
   return (
@@ -25,5 +25,5 @@ export default function Intro() {
         />
       </div>
     </section>
-  )
+  );
 }
