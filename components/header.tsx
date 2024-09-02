@@ -1,15 +1,15 @@
-import Link from 'next/link'
-import ThemeToggle from '@/components/theme-toggle'
+import Link from 'next/link';
+import ThemeToggle from '@/components/theme-toggle';
 
 export default function Header() {
   const headerItems: {
-    link: string
-    label: string
+    link: string;
+    label: string;
   }[] = [
     { link: '/posts', label: 'Posts' },
     { link: '/projects', label: 'Projects' },
     { link: '/contact', label: 'Contact' }
-  ]
+  ];
 
   return (
     <header className='fixed inset-x-0 top-0 z-50 bg-background/75 py-6 backdrop-blur-sm'>
@@ -33,5 +33,5 @@ export default function Header() {
         </div>
       </nav>
     </header>
-  )
+  );
 }
