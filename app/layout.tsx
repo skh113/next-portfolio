@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Keyvan's portfolio",
     description:
       'A simple portfolio where I talk about my newest techniques about programming',
-    images: '/keyvan-bw.png',
+    images: '/images/authors/keyvan-bw.png',
     type: 'website'
   },
   twitter: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Keyvan's portfolio",
     description:
       'A simple portfolio where I talk about my newest techniques about programming',
-    images: '/keyvan-bw.png'
+    images: '/images/authors/keyvan-bw.png'
   }
 };
 
