@@ -22,7 +22,7 @@ export async function sendEmail(data: ContactFormInputs) {
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_ADDRESS!,
       to: [email],
-      cc: ['Keyvan Hosseini', process.env.EMAIL_ADDRESS!],
+      cc: [process.env.EMAIL_ADDRESS!],
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       react: ContactFormEmail({ name, email, message })
@@ -60,7 +60,7 @@ export async function subscribe(data: NewsletterFormInputs) {
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_ADDRESS!,
       to: [email],
-      cc: ['Keyvan Hosseini', process.env.EMAIL_ADDRESS!],
+      cc: [process.env.EMAIL_ADDRESS!],
       subject: 'Newsletter form submission',
       react: NewSubscriberEmail()
     });
