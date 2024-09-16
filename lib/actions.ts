@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 import { ContactFormSchema, NewsletterFormSchema } from '@/lib/schemas';
 import ContactFormEmail from '@/emails/contact-form-email';
+import NewSubscriberEmail from '@/emails/new-subscriber-email';
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 type NewsletterFormInputs = z.infer<typeof NewsletterFormSchema>;
@@ -19,9 +20,9 @@ export async function sendEmail(data: ContactFormInputs) {
   try {
     const { name, email, message } = result.data;
     const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_ADDRESS!,
+      from: `Keyvan Hosseini <${process.env.EMAIL_ADDRESS!}>`,
       to: [email],
-      cc: [process.env.EMAIL_ADDRESS!],
+      cc: ['Keyvan Hosseini', process.env.EMAIL_ADDRESS!],
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       react: ContactFormEmail({ name, email, message })
@@ -46,16 +47,27 @@ export async function subscribe(data: NewsletterFormInputs) {
 
   try {
     const { email } = result.data;
-    const { data, error } = await resend.contacts.create({
-      email: email,
-      audienceId: process.env.RESEND_AUDIENCE_ID as string
-    });
+    const { data: subscribeData, error: subscribeError } =
+      await resend.contacts.create({
+        email: email,
+        audienceId: process.env.RESEND_AUDIENCE_ID as string
+      });
 
-    if (!data || error) {
+    if (!subscribeData || subscribeError) {
       throw new Error('Failed to subscribe');
     }
 
-    // TODO: Send a welcome email
+    const { data, error } = await resend.emails.send({
+      from: `Keyvan Hosseini <${process.env.EMAIL_ADDRESS!}>`,
+      to: [email],
+      cc: ['Keyvan Hosseini', process.env.EMAIL_ADDRESS!],
+      subject: 'Contact form submission',
+      react: NewSubscriberEmail()
+    });
+
+    if (!data || error) {
+      throw new Error('Failed to send email');
+    }
 
     return { success: true };
   } catch (error) {
