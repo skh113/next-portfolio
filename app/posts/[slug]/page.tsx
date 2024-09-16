@@ -11,6 +11,41 @@ export async function generateStaticParams() {
   return posts.map(post => ({ slug: post.slug }));
 }
 
+// Open Graph Metadata
+export async function generateMetadata({
+  params
+}: {
+  params: { slug: string };
+}) {
+  const posts = await getContentBySlug('posts', params.slug);
+
+  if (!posts) {
+    return {
+      title: 'Post not found'
+    };
+  }
+
+  const { metadata } = posts;
+  const { title, description, image } = metadata;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: image ? [{ url: image }] : [],
+      type: 'article'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: image ? [image] : []
+    }
+  };
+}
+
 export default async function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = await getContentBySlug('posts', slug);
@@ -49,7 +84,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           </p>
         </header>
 
-        <main className='prose dark:prose-invert mt-16'>
+        <main className='prose mt-16 dark:prose-invert'>
           <MDXContent source={content} />
         </main>
 

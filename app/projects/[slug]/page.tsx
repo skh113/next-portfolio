@@ -12,6 +12,41 @@ export async function generateStaticParams() {
   return projects.map(project => ({ slug: project.slug }));
 }
 
+// Open Graph Metadata
+export async function generateMetadata({
+  params
+}: {
+  params: { slug: string };
+}) {
+  const project = await getContentBySlug('projects', params.slug);
+
+  if (!project) {
+    return {
+      title: 'Project not found'
+    };
+  }
+
+  const { metadata } = project;
+  const { title, description, image } = metadata;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: image ? [{ url: image }] : [],
+      type: 'article'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: image ? [image] : []
+    }
+  };
+}
+
 export default async function Project({
   params
 }: {
@@ -34,7 +69,7 @@ export default async function Project({
           href='/projects'
           className='mb-8 inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground'
         >
-          <ArrowLeftIcon className='h-5 w-5' />
+          <ArrowLeftIcon className='size-5' />
           <span>Back to projects</span>
         </Link>
 
