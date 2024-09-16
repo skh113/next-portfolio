@@ -7,10 +7,11 @@ export default function Intro() {
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title no-underline'>Hey, I&#39;m Keyvan.</h1>
         <p className='mt-3 font-light text-muted-foreground'>
-          Beyond all the fancy words, I have a genuine passion for creating and
-          being creative. Whether it&apos;s creating music or writing complex
-          scripts for websites, I find joy in the process. I have a particular
-          love for learning, especially in the field of computer science
+          {/*Beyond all the fancy words,*/}I have a genuine passion for creating
+          and being creative. Whether it&apos;s creating music or writing
+          complex scripts for websites, I find joy in the process. I have a
+          particular love for learning, especially in the field of computer
+          science
         </p>
       </div>
       <div className='relative'>
