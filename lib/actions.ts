@@ -19,9 +19,9 @@ export async function sendEmail(data: ContactFormInputs) {
   try {
     const { name, email, message } = result.data;
     const { data, error } = await resend.emails.send({
-      from: 'keyvan@website.ir',
+      from: process.env.EMAIL_ADDRESS!,
       to: [email],
-      cc: ['keyvan@website.ir'],
+      cc: [process.env.EMAIL_ADDRESS!],
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       react: ContactFormEmail({ name, email, message })
