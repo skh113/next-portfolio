@@ -15,7 +15,28 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Keyvan's portfolio",
   description:
-    'A simple portfolio where I talk about my newest techniques about programming'
+    'A simple portfolio where I talk about my newest techniques about programming',
+  metadataBase: new URL(process.env.WEBSITE_URL!),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US'
+    }
+  },
+  openGraph: {
+    title: "Keyvan's portfolio",
+    description:
+      'A simple portfolio where I talk about my newest techniques about programming',
+    images: '/keyvan-bw.png',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Keyvan's portfolio",
+    description:
+      'A simple portfolio where I talk about my newest techniques about programming',
+    images: '/keyvan-bw.png'
+  }
 };
 
 export default function RootLayout({
