@@ -27,21 +27,21 @@ export async function generateMetadata({
   }
 
   const { metadata } = project;
-  const { title, description, image } = metadata;
+  const { title, summary, image } = metadata;
 
   return {
     title,
-    description,
+    description: summary,
     openGraph: {
       title,
-      description,
+      description: summary,
       images: image ? [{ url: image }] : [],
       type: 'article'
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description,
+      description: summary,
       images: image ? [image] : []
     }
   };
