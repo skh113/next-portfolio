@@ -1,15 +1,15 @@
 'use client';
 
-import { z } from 'zod';
-import Link from 'next/link';
-import { toast } from 'sonner';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ContactFormSchema } from '@/lib/schemas';
+import Link from 'next/link';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { sendEmail } from '@/lib/actions';
+import { ContactFormSchema } from '@/lib/schemas';
 
 type Inputs = z.infer<typeof ContactFormSchema>;
 
