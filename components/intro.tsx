@@ -1,14 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import authorImage from '@/public/images/authors/keyvan-bw.png';
 import { Button } from './ui/button';
-import Link from 'next/link';
 
 export default function Intro() {
   return (
     <section className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-24 md:flex-row md:items-center'>
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title no-underline'>Hey, I&#39;m Keyvan.</h1>
-        <p className='my-3 font-light text-muted-foreground'>
+        <p className='my-3 font-light text-muted-foreground text-justify'>
           {/*Beyond all the fancy words,*/}I have a genuine passion for creating
           and being creative. Whether it&apos;s creating music or writing
           complex scripts for websites, I find joy in the process. I have a
