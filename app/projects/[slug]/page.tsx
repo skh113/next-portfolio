@@ -1,58 +1,21 @@
-import Link from 'next/link';
-import Image from 'next/image';
-
-import { formatDate } from '@/lib/utils';
-import MDXContent from '@/components/mdx-content';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
+import MDXContent from '@/components/mdx-content';
 import { getAllContents, getContentBySlug } from '@/lib/content';
+import { formatDate } from '@/lib/utils';
 
 export async function generateStaticParams() {
   const projects = await getAllContents('projects');
   return projects.map(project => ({ slug: project.slug }));
 }
 
-// Open Graph Metadata
-export async function generateMetadata({
-  params
-}: {
-  params: { slug: string };
-}) {
-  const project = await getContentBySlug('projects', params.slug);
-
-  if (!project) {
-    return {
-      title: 'Project not found'
-    };
-  }
-
-  const { metadata } = project;
-  const { title, summary, image } = metadata;
-
-  return {
-    title,
-    description: summary,
-    openGraph: {
-      title,
-      description: summary,
-      images: image ? [{ url: image }] : [],
-      type: 'article'
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description: summary,
-      images: image ? [image] : []
-    }
-  };
-}
-
 export default async function Project({
   params
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
+}: PageProps<'/projects/[slug]'>) {
+  const { slug } = await params;
   const project = await getContentBySlug('projects', slug);
 
   if (!project) {
@@ -97,4 +60,38 @@ export default async function Project({
       </div>
     </section>
   );
+}
+
+// Open Graph Metadata
+export async function generateMetadata({
+  params
+}: PageProps<'/projects/[slug]'>) {
+  const { slug } = await params;
+  const project = await getContentBySlug('projects', slug);
+
+  if (!project) {
+    return {
+      title: 'Project not found'
+    };
+  }
+
+  const { metadata } = project;
+  const { title, summary, image } = metadata;
+
+  return {
+    title,
+    description: summary,
+    openGraph: {
+      title,
+      description: summary,
+      images: image ? [{ url: image }] : [],
+      type: 'article'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: summary,
+      images: image ? [image] : []
+    }
+  };
 }

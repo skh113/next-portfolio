@@ -1,53 +1,18 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
-import { formatDate } from '@/lib/utils';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import MDXContent from '@/components/mdx-content';
 import { getAllContents, getContentBySlug } from '@/lib/content';
+import { formatDate } from '@/lib/utils';
 
 export async function generateStaticParams() {
   const posts = await getAllContents('posts');
   return posts.map(post => ({ slug: post.slug }));
 }
 
-// Open Graph Metadata
-export async function generateMetadata({
-  params
-}: {
-  params: { slug: string };
-}) {
-  const posts = await getContentBySlug('posts', params.slug);
-
-  if (!posts) {
-    return {
-      title: 'Post not found'
-    };
-  }
-
-  const { metadata } = posts;
-  const { title, summary, image } = metadata;
-
-  return {
-    title,
-    description: summary,
-    openGraph: {
-      title,
-      description: summary,
-      images: image ? [{ url: image }] : [],
-      type: 'article'
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description: summary,
-      images: image ? [image] : []
-    }
-  };
-}
-
-export default async function Post({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Post({ params }: PageProps<'/posts/[slug]'>) {
+  const { slug } = await params;
   const post = await getContentBySlug('posts', slug);
 
   if (!post) notFound();
@@ -94,4 +59,36 @@ export default async function Post({ params }: { params: { slug: string } }) {
       </div>
     </section>
   );
+}
+
+// Open Graph Metadata
+export async function generateMetadata({ params }: PageProps<'/posts/[slug]'>) {
+  const { slug } = await params;
+  const posts = await getContentBySlug('posts', slug);
+
+  if (!posts) {
+    return {
+      title: 'Post not found'
+    };
+  }
+
+  const { metadata } = posts;
+  const { title, summary, image } = metadata;
+
+  return {
+    title,
+    description: summary,
+    openGraph: {
+      title,
+      description: summary,
+      images: image ? [{ url: image }] : [],
+      type: 'article'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: summary,
+      images: image ? [image] : []
+    }
+  };
 }
