@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { cn } from '@/lib/utils';
@@ -11,33 +12,6 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif'
 });
-
-export const metadata: Metadata = {
-  title: "Keyvan's portfolio",
-  description:
-    'A simple portfolio where I talk about my newest techniques about programming',
-  metadataBase: new URL(process.env.WEBSITE_URL!),
-  alternates: {
-    canonical: '/',
-    languages: {
-      'en-US': '/en-US'
-    }
-  },
-  openGraph: {
-    title: "Keyvan's portfolio",
-    description:
-      'A simple portfolio where I talk about my newest techniques about programming',
-    images: '/images/authors/keyvan-bw.png',
-    type: 'website'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: "Keyvan's portfolio",
-    description:
-      'A simple portfolio where I talk about my newest techniques about programming',
-    images: '/images/authors/keyvan-bw.png'
-  }
-};
 
 export default function RootLayout({
   children
@@ -61,4 +35,38 @@ export default function RootLayout({
       </body>
     </html>
   );
+}
+
+export function generateMetadata(): Metadata {
+  const metadata: Metadata = {
+    title: "Keyvan's portfolio",
+    description:
+      'A simple portfolio where I talk about my newest techniques about programming',
+    metadataBase: new URL(process.env.WEBSITE_URL!),
+    alternates: {
+      canonical: '/',
+      languages: {
+        'en-US': '/en-US'
+      }
+    },
+    openGraph: {
+      title: "Keyvan's portfolio",
+      description:
+        'A simple portfolio where I talk about my newest techniques about programming',
+      images: '/images/authors/keyvan-bw.png',
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Keyvan's portfolio",
+      description:
+        'A simple portfolio where I talk about my newest techniques about programming',
+      images: '/images/authors/keyvan-bw.png'
+    },
+    other: {
+      ...Sentry.getTraceData()
+    }
+  };
+
+  return metadata;
 }
