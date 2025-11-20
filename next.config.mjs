@@ -1,14 +1,16 @@
 import { withSentryConfig } from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  typedRoutes: true,
+};
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
   org: 'keyvan',
-
   project: 'next-portfolio',
+  
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
