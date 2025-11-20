@@ -2,6 +2,7 @@
 
 import { ThemeProvider, useTheme } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
+import { OfflineSync } from './offline-indicator';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     >
       {children}
       <ToasterProvider />
+      <OfflineSync />
     </ThemeProvider>
   );
 }
