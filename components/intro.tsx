@@ -18,7 +18,7 @@ export default function Intro() {
         <div className='flex gap-2'>
           <Button>
             <Link
-              href='/resume/Seyed Keyvan Hosseini - Resume.pdf'
+              href={{ pathname: '/resume/Seyed Keyvan Hosseini - Resume.pdf' }}
               target='_blank'
             >
               Download Resume

@@ -1,10 +1,10 @@
 'use server';
 
-import { z } from 'zod';
 import { Resend } from 'resend';
-import { ContactFormSchema, NewsletterFormSchema } from '@/lib/schemas';
+import { z } from 'zod';
 import ContactFormEmail from '@/emails/contact-form-email';
 import NewSubscriberEmail from '@/emails/new-subscriber-email';
+import { ContactFormSchema, NewsletterFormSchema } from '@/lib/schemas';
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 type NewsletterFormInputs = z.infer<typeof NewsletterFormSchema>;
@@ -25,7 +25,7 @@ export async function sendEmail(data: ContactFormInputs) {
       cc: [process.env.EMAIL_ADDRESS!],
       subject: 'Contact form submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      react: ContactFormEmail({ name, email, message })
+      react: await ContactFormEmail({ name, email, message })
     });
 
     if (!data || error) {
