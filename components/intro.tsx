@@ -13,7 +13,7 @@ export default function Intro() {
           and being creative. Whether it&apos;s creating music or writing
           complex scripts for websites, I find joy in the process. I have a
           particular love for learning, especially in the field of computer
-          science
+          science.
         </p>
         <div className='flex gap-2'>
           <Button>
