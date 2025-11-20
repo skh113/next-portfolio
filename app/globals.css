@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -79,6 +80,17 @@
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
+
+  /* Sugar High */
+  --sh-identifier: #354150;
+  --sh-keyword: #f47067;
+  --sh-string: #00a99a;
+  --sh-class: #8d85ff;
+  --sh-property: #4e8fdf;
+  --sh-entity: #6eafad;
+  --sh-jsxliterals: #bf7db6;
+  --sh-sign: #8996a3;
+  --sh-comment: #a19595;
 }
 
 .dark {
@@ -113,6 +125,12 @@
   --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.553 0.013 58.071);
+
+  /* Sugar High */
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
 }
 
 @layer base {
@@ -124,53 +142,45 @@
   }
 }
 
-
 .container {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
   padding-right: 2rem;
-  padding-left: 2rem
+  padding-left: 2rem;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .container {
-      max-width: 1200px;
+    max-width: 768px;
   }
 }
 
 .title {
-  font-family: var(--font-serif),ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+  font-family:
+    var(--font-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 700;
   text-decoration-line: underline;
-  text-decoration-color: hsl(var(--border)/.75);
+  text-decoration-color: hsl(var(--border) / 0.75);
   text-decoration-thickness: 2px;
-  text-underline-offset: 8px
+  text-underline-offset: 8px;
 }
 
 .prose pre {
-  overflow-x: auto;
-  background-color: hsl(var(--accent));
-  padding: 1rem 1.25rem;
-  font-size: .875rem;
-  line-height: 1.25rem
-}
-
-.prose code,.prose pre {
-  border-radius: var(--radius)
+  @apply overflow-x-auto rounded-lg bg-accent px-5 py-4 text-sm;
 }
 
 .prose code {
-  padding: .125rem .25rem
+  @apply rounded-lg px-1 py-0.5;
 }
 
 .prose pre code {
-  padding: 0;
-  line-height: .75rem
+  @apply p-0 leading-3;
 }
 
 .prose code span {
-  font-weight: 500
+  @apply font-medium;
 }
