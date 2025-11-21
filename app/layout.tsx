@@ -35,9 +35,9 @@ export default function RootLayout({
           <Header />
           <main className='grow'>{children}</main>
           <Footer />
-          <Analytics />
-          <SpeedInsights />
         </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
