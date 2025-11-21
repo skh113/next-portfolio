@@ -1,6 +1,8 @@
 import './globals.css';
 
 import * as Sentry from '@sentry/nextjs';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 
@@ -33,6 +35,8 @@ export default function RootLayout({
           <Header />
           <main className='grow'>{children}</main>
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

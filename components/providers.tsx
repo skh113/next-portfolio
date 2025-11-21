@@ -1,7 +1,5 @@
 'use client';
 
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider, useTheme } from 'next-themes';
 
 import { Toaster } from '@/components/ui/sonner';
@@ -18,8 +16,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       {children}
       <ToasterProvider />
       <OfflineSync />
-      <Analytics />
-      <SpeedInsights />
     </ThemeProvider>
   );
 }
