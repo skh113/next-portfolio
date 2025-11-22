@@ -4,14 +4,17 @@ import * as Sentry from '@sentry/nextjs';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Nunito_Sans, Playfair_Display } from 'next/font/google';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Providers from '@/components/providers';
 import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  variable: '--font-nunito-sans'
+});
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif'
@@ -27,7 +30,7 @@ export default function RootLayout({
       <body
         className={cn(
           'flex min-h-screen flex-col font-sans antialiased',
-          inter.variable,
+          nunitoSans.variable,
           playfair.variable
         )}
       >
