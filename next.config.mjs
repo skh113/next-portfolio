@@ -18,7 +18,10 @@ const withPWA = withPWAInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typedRoutes: true
+  typedRoutes: true,
+  experimental: {
+    typedEnv: true
+  }
 };
 
 export default withSentryConfig(withPWA(nextConfig), {
