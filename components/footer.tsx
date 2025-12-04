@@ -1,4 +1,4 @@
-import { JSX, SVGProps } from 'react'
+import { JSX, SVGProps } from 'react';
 
 const navigation = [
   // {
@@ -87,7 +87,7 @@ const navigation = [
   //     </svg>
   //   )
   // }
-]
+];
 
 export default function Footer() {
   return (
@@ -117,5 +117,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -3,5 +3,10 @@
     "source.organizeImports.biome": "explicit",
     "source.fixAll.biome": "explicit",
     "source.removeUnusedImports": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "biomejs.biome",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

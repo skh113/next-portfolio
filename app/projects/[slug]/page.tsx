@@ -2,7 +2,6 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
 import MDXContent from '@/components/mdx-content';
 import { getAllContents, getContentBySlug } from '@/lib/content';
 import { formatDate } from '@/lib/utils';
