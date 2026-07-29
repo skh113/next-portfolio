@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllContents } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const baseUrl = process.env.WEBSITE_URL;
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
