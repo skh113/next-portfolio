@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-
-import Posts from '@/components/posts';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import Posts from '@/components/posts';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { ContentMetadata } from '@/lib/content';
 
 export default function PostsWithSearch({
@@ -25,7 +24,7 @@ export default function PostsWithSearch({
 
   return (
     <div>
-      <div className='mb-12 flex items-center gap-3'>
+      <div className='mb-8 flex items-center gap-3'>
         <Input
           type='text'
           placeholder='Search posts...'
