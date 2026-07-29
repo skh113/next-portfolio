@@ -5,10 +5,12 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Nunito_Sans, Playfair_Display } from 'next/font/google';
+import { Person, WithContext } from 'schema-dts';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Providers from '@/components/providers';
+import { JsonLdScript } from '@/components/seo-helpers';
 import { cn } from '@/lib/utils';
 
 const nunitoSans = Nunito_Sans({
@@ -25,6 +27,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd: WithContext<Person> = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Keyvan Hosseini',
+    url: 'https://keyvanhosseini.ir',
+    image: 'https://keyvanhosseini.ir/images/authors/keyvan-bw.png',
+    description:
+      'A simple portfolio where I talk about my newest techniques about programming',
+    sameAs: [
+      'https://github.com/skh113',
+      'https://t.me/Da_Real_K1',
+      'https://www.linkedin.com/in/real-keyvan-hosseini/',
+      'https://www.instagram.com/keyvan_hosseini1/'
+    ]
+  };
+
   return (
     <html lang='en' suppressHydrationWarning>
       <body
@@ -34,6 +52,7 @@ export default function RootLayout({
           playfair.variable
         )}
       >
+        <JsonLdScript data={jsonLd} />
         <Providers>
           <Header />
           <main className='grow'>{children}</main>
