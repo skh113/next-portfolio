@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-import { formatDate } from '@/lib/utils';
 import { ContentMetadata } from '@/lib/content';
+import { formatDate } from '@/lib/utils';
 
 export default function Projects({
   projects
@@ -20,7 +19,7 @@ export default function Projects({
                   src={project.image}
                   alt={project.title || ''}
                   fill
-                  className='rounded-lg object-cover object-center transition-transform duration-500 group-hover:scale-105'
+                  className='rounded-lg grayscale-0 object-cover object-center transition-all duration-500 group-hover:scale-105 group-hover:grayscale-100'
                 />
               </div>
             )}
