@@ -8,7 +8,7 @@ export default async function RecentPosts() {
   return (
     <section className='pb-24'>
       <div>
-        <h2 className='title mb-12'>Recent posts</h2>
+        <h2 className='title mb-8'>Recent Posts</h2>
         <Posts posts={posts} />
 
         <Link
