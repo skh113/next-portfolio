@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function OfflinePage() {
   return (
-    <section className='flex h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 pb-24 pt-40 text-center'>
+    <section className='flex h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 pb-20 pt-40 text-center'>
       <div className='container max-w-3xl'>
         <h1 className='title mb-4'>No Internet Connection</h1>
         <p className='text-muted-foreground mb-8'>

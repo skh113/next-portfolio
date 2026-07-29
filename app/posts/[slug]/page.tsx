@@ -21,7 +21,7 @@ export default async function Post({ params }: PageProps<'/posts/[slug]'>) {
   const { title, image, author, publishedAt } = metadata;
 
   return (
-    <section className='pb-24 pt-32'>
+    <section className='pb-20 pt-32'>
       <div className='container max-w-3xl'>
         <Link
           href='/posts'

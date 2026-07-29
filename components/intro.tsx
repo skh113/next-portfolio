@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 
 export default function Intro() {
   return (
-    <section className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-24 md:flex-row md:items-center'>
+    <section className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-20 md:flex-row md:items-center'>
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title no-underline'>Hey, I&#39;m Keyvan.</h1>
         <p className='my-3 font-light text-muted-foreground text-justify'>
@@ -19,7 +19,10 @@ export default function Intro() {
           <Button>
             <Link
               download
-              href={{ pathname: '/resume/Seyed Keyvan Hosseini Resume - Frontend Developer.pdf' }}
+              href={{
+                pathname:
+                  '/resume/Seyed Keyvan Hosseini Resume - Frontend Developer.pdf'
+              }}
               target='_blank'
             >
               Download Resume
