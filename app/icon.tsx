@@ -39,6 +39,13 @@ export default async function Icon({ id }: { id: Promise<string> }) {
   const iconId = (await id) as keyof typeof SIZES;
   const letter = 'K';
   const fontData = await loadPlayfairBold(letter);
+
+  const getFontSize = () => {
+    if (iconId === '32') return 24;
+    else if (iconId === '192') return 128;
+    else return 384;
+  };
+
   return new ImageResponse(
     <div
       style={{
@@ -46,7 +53,7 @@ export default async function Icon({ id }: { id: Promise<string> }) {
         fontFamily: 'Playfair Display',
         fontWeight: 700,
         lineHeight: 1,
-        fontSize: 24,
+        fontSize: getFontSize(),
         background: 'black',
         width: '100%',
         height: '100%',
