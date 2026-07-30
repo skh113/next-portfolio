@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'flex min-h-screen flex-col font-sans antialiased',
+          'flex min-h-dvh flex-col font-sans antialiased',
           nunitoSans.variable,
           playfair.variable
         )}
@@ -70,6 +70,34 @@ export function generateMetadata(): Metadata {
     title: "Keyvan's portfolio",
     description:
       'A simple portfolio where I talk about my newest techniques about programming',
+    keywords: [
+      'Keyvan Hosseini',
+      'Frontend',
+      'Software Development',
+      'Front-end developer',
+      'Frontend development',
+      'Computer Science',
+      'Software Engineering',
+      'Programming',
+      'Web Development',
+      'Mobile Development',
+      'AI',
+      'Machine Learning',
+      'Data Science'
+    ],
+    authors: [{ name: 'Keyvan Hosseini' }],
+    creator: 'Keyvan Hosseini',
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+      'max-snippet': -1
+    },
+    category: 'technology',
+    applicationName: "Keyvan's portfolio",
+    publisher: 'Keyvan Hosseini',
     metadataBase: new URL(process.env.WEBSITE_URL!),
     alternates: {
       canonical: '/',
