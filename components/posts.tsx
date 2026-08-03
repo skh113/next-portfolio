@@ -13,8 +13,8 @@ export default function Posts({ posts }: { posts: ContentMetadata[] }) {
               <Image
                 src={post.image}
                 alt={post.title ?? 'Post Image'}
-                width={96}
-                height={96}
+                width={256}
+                height={256}
                 className='rounded-md h-24 w-24 object-cover grayscale-0 transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:grayscale-100'
               />
             )}
