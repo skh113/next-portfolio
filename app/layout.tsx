@@ -120,7 +120,8 @@ export function generateMetadata(): Metadata {
       images: '/images/authors/keyvan-bw.png'
     },
     other: {
-      ...Sentry.getTraceData()
+      ...Sentry.getTraceData(),
+      'google-site-verification': process.env.GOOGLE_SITE_VERIFICATION!
     }
   };
 
