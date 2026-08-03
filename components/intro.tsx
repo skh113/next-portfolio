@@ -8,7 +8,7 @@ export default function Intro() {
     <section className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-20 md:flex-row md:items-center'>
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title no-underline'>Hey, I&#39;m Keyvan.</h1>
-        <p className='my-3 font-light text-muted-foreground text-justify'>
+        <p className='my-3 font-light text-muted-foreground'>
           {/*Beyond all the fancy words,*/}I have a genuine passion for creating
           and being creative. Whether it&apos;s creating music or writing
           complex scripts for websites, I find joy in the process. I have a
