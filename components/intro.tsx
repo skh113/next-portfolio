@@ -16,7 +16,7 @@ export default function Intro() {
           science.
         </p>
         <div className='flex gap-2'>
-          <Button className='py-3 px-5'>
+          <Button size='lg'>
             <Link
               download
               href={{
@@ -28,7 +28,7 @@ export default function Intro() {
               Download Resume
             </Link>
           </Button>
-          <Button variant='link' className='py-3 px-5'>
+          <Button variant='link' size='lg'>
             <Link href='/projects'>Projects</Link>
           </Button>
         </div>
