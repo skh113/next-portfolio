@@ -49,7 +49,7 @@ export default async function Post({ params }: PageProps<'/posts/[slug]'>) {
           </p>
         </header>
 
-        <main className='prose mt-16 dark:prose-invert'>
+        <main className='prose text-pretty mt-16 dark:prose-invert'>
           <MDXContent source={content} />
         </main>
 
