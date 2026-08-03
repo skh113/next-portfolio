@@ -1,0 +1,97 @@
+---
+
+title: Emulators and Simulators
+summary: Learn the difference between emulators and simulators, how each one creates a virtual testing environment, and when developers should use them.
+image: /images/posts/emulators-and-simulators.png
+author: 'Seyed Keyvan Hosseini'
+publishedAt: '2026-07-29'
+-------------------------
+
+The other day, I was watching a PWA tutorial when I heard that **iOS uses a simulator**, while Android Studio provides an **emulator**. So, I decided to write a post about the subject and share what I found.
+
+The terms *emulator* and *simulator* are sometimes used interchangeably. However, each takes a different approach to reproducing the behavior of a real device.
+Both are used to create virtual environments where you can test applications without buying and managing many physical devices, which can be both expensive and time-consuming.
+
+Let’s understand what each of them does so we can see the difference.
+
+## Emulators
+
+According to the [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/emulate), *emulate* means:
+
+<blockquote>
+  To copy something achieved by someone else and try to do it as well as they have.
+</blockquote>
+
+An emulator tries to reproduce the behavior of another system closely enough that software written for the original system can run inside the emulated environment.
+
+To understand how this can work, we first need to know about the **Instruction Set Architecture**, or **ISA** for short.
+
+An ISA defines the programmable interface of a processor. It includes the instructions that software can use to communicate with the CPU, such as instructions for performing calculations, accessing memory, and controlling program flow. Basically, it acts as the bridge between machine code and the processor.
+When the emulated device and the host computer use different instruction sets, the emulator may need to translate instructions from one architecture to another. This translation adds complexity and can reduce performance.
+
+However, not every emulator needs to translate every CPU instruction. When the host and guest systems use compatible architectures, an emulator may use hardware-assisted virtualization to run much faster.
+
+### Examples
+
+A common example for application developers is the [Android Emulator](https://developer.android.com/studio/run/emulator), which is included with Android Studio.
+It lets developers create **Android Virtual Devices**, or **AVD**s, with different screen sizes, Android versions, hardware characteristics, and CPU architectures. Depending on the host computer and the selected AVD, it can use hardware virtualization to improve performance.
+
+Another popular example is [RPCS3](https://github.com/RPCS3/rpcs3), an open-source PlayStation 3 emulator and debugger.
+The PlayStation 3 used the unusual and complex **Cell processor architecture**, so reproducing its behavior on ordinary desktop processors has been a major technical challenge. RPCS3 needs to reproduce not only the console’s software environment but also the behavior of its specialized processor components.
+
+---
+
+I asked one of my friends, who has spent countless hours working with emulators, what he thought about them. He said:
+
+<blockquote>
+  I love them so much. The most exciting part of software engineering is hardware emulation.
+</blockquote>
+---
+
+## Simulators
+
+According to the [Cambridge Dictionary](https://dictionary.cambridge.org/dictionary/english/simulate), *simulate* means:
+
+<blockquote>
+  To do or make something that looks real but is not real.
+</blockquote>
+
+A simulator reproduces the **behavior and environment** of another system without necessarily reproducing its hardware.
+
+Instead of fully replicating the hardware, it provides an environment that behaves similarly enough for developers to test many parts of their applications.
+
+For example, Apple’s platforms share many frameworks and development tools. On modern Macs and Apple devices, the processors also use similar ARM-based architectures. This allows Xcode’s Simulator to run specially compiled versions of applications directly on the Mac instead of reproducing an entire iPhone processor in software.
+
+However, Simulator does not reproduce every detail of a physical iPhone or iPad. Hardware-specific features, performance characteristics, sensors, cameras, thermal behavior, and network conditions may behave differently on a real device.
+
+### Examples
+
+The most relevant example for application and web developers is [Simulator in Xcode](https://developer.apple.com/documentation/xcode/running-your-app-on-simulated-or-physical-devices).
+
+Simulator lets developers test applications across different Apple device types and operating-system versions without needing a physical device for every scenario.
+For web development, it is particularly useful for testing websites and PWAs in Mobile Safari. Still, it should not completely replace testing on a physical iPhone or iPad.
+
+## Differences
+
+The main difference is **what the tool attempts to reproduce**:
+
+* A **simulator** primarily reproduces the behavior, interface, and software environment of a system.
+* An **emulator** attempts to reproduce enough of the original system—including parts of its hardware behavior—to run software designed for that system.
+
+Because a simulator usually does not need to reproduce an entire hardware architecture, it can often run faster and require fewer resources.
+
+Emulation can be more computationally expensive, especially when instructions must be translated between different CPU architectures. As said, modern emulators can also use hardware-assisted virtualization, which makes them much faster when the host and guest architectures are compatible.
+
+Another important difference is accuracy. An emulator may provide more accurate hardware-related behavior, but neither an emulator nor a simulator guarantees a perfect reproduction of a physical device.
+
+## Conclusion
+
+In mobile and web development, at the time of writing this post, the standard Apple development tool is **Simulator in Xcode**, while the standard Android development tool is the **Android Emulator** included with Android Studio.
+
+However, in other scenarios, choosing between a simulator and an emulator comes down to the needs of your project.
+
+If you mainly need to test an application’s interface, general behavior, or compatibility across operating-system versions, a simulator may be enough.
+
+If you need to run software built for a different device or reproduce more of its original hardware behavior, you will probably need an emulator.
+
+Still, neither solution gives you **100% accuracy**. They are less expensive and more convenient ways to test your application across many configurations, but you should always perform final tests on real devices—especially for performance, hardware features, touch interactions, and device-specific browser behavior.
