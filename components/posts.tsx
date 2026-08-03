@@ -15,7 +15,7 @@ export default function Posts({ posts }: { posts: ContentMetadata[] }) {
                 alt={post.title ?? 'Post Image'}
                 width={256}
                 height={256}
-                className='rounded-md h-24 w-24 object-cover grayscale-0 transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:grayscale-100'
+                className='rounded-md h-24 w-24 object-cover grayscale transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:grayscale-50'
               />
             )}
             <div className='max-w-lg'>

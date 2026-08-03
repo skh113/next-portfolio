@@ -19,7 +19,7 @@ export default function Projects({
                   src={project.image}
                   alt={project.title || ''}
                   fill
-                  className='rounded-lg grayscale-0 object-cover object-center transition-all duration-500 group-hover:scale-105 group-hover:grayscale-100'
+                  className='rounded-lg grayscale object-cover object-center transition-all duration-500 group-hover:scale-105 group-hover:grayscale-50'
                 />
               </div>
             )}
