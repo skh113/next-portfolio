@@ -41,19 +41,23 @@ export default async function Icon({ id }: { id: Promise<string> }) {
   const fontData = await loadPlayfairBold(letter);
 
   const getFontSize = () => {
-    if (iconId === '32') return 24;
-    else if (iconId === '192') return 128;
-    else return 384;
+    const iconSize = SIZES[iconId];
+    return iconSize * 0.75; // 75% of the icon size
+  };
+
+  const getBorderRadius = () => {
+    const iconSize = SIZES[iconId];
+    return iconSize * 0.175; // 17.5% of the icon size
   };
 
   return new ImageResponse(
     <div
       style={{
-        borderRadius: '12px',
         fontFamily: 'Playfair Display',
         fontWeight: 700,
         lineHeight: 1,
         fontSize: getFontSize(),
+        borderRadius: getBorderRadius(),
         background: 'black',
         width: '100%',
         height: '100%',
