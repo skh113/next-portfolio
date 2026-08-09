@@ -16,21 +16,21 @@ export default function Intro() {
           science.
         </p>
         <div className='flex gap-2'>
-          <Button size='lg'>
-            <Link
-              download
-              href={{
-                pathname:
-                  '/resume/Seyed Keyvan Hosseini Resume - Frontend Developer.pdf'
-              }}
-              target='_blank'
-            >
-              Download Resume
-            </Link>
-          </Button>
-          <Button variant='link' size='lg'>
-            <Link href='/projects'>Projects</Link>
-          </Button>
+          <Link
+            download
+            href={{
+              pathname:
+                '/resume/Seyed Keyvan Hosseini Resume - Frontend Developer.pdf'
+            }}
+            target='_blank'
+          >
+            <Button size='lg'>Download Resume</Button>
+          </Link>
+          <Link href='/projects'>
+            <Button variant='link' size='lg'>
+              Projects
+            </Button>
+          </Link>
         </div>
       </div>
       <div className='relative'>
