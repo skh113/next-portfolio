@@ -20,7 +20,7 @@ export default function Intro() {
             download
             href={{
               pathname:
-                '/resume/Seyed Keyvan Hosseini Resume - Frontend Developer.pdf'
+                '/resume/Seyed Keyvan Hosseini Resume - Frontend Engineer.pdf'
             }}
             target='_blank'
           >
